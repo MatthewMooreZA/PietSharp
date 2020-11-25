@@ -13,7 +13,7 @@ namespace PietSharp.Core.Models
             _pixels = new HashSet<(int x, int y)>();
         }
         public int BlockCount => _pixels.Count;
-        public uint Colour { get; set; }
+        public uint Colour { get; }
 
         public bool AddPixel(int x, int y)
         {
