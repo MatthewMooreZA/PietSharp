@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PietSharp.Core", "PietSharp.Core\PietSharp.Core.csproj", "{2801655A-414F-4737-B52E-FFC916D797CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C7D1FFA-E1BE-4CFB-B055-CEEDB97B8B62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PietSharp.Core.Tests", "PietSharp.Core.Tests\PietSharp.Core.Tests.csproj", "{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2801655A-414F-4737-B52E-FFC916D797CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2801655A-414F-4737-B52E-FFC916D797CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2801655A-414F-4737-B52E-FFC916D797CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2801655A-414F-4737-B52E-FFC916D797CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5} = {7C7D1FFA-E1BE-4CFB-B055-CEEDB97B8B62}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17641B4F-4FC1-46AC-9EA3-49E6E03EA2BB}
+	EndGlobalSection
+EndGlobal
