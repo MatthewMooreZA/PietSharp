@@ -24,6 +24,7 @@ namespace PietSharp.Core.Models
         {
             return _pixels.Contains((x, y));
         }
-        private HashSet<(int x, int y)> _pixels;
+
+        private readonly HashSet<(int x, int y)> _pixels;
     }
 }
