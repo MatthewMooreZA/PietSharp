@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using PietSharp.Core.ExtensionMethods;
 
@@ -94,6 +95,11 @@ namespace PietSharp.Core
             var (numberOfRolls, depthOfRoll) = stackResults;
             int absNumberOfRolls = Math.Abs(numberOfRolls);
 
+        }
+
+        public IEnumerable<int> AsEnumerable()
+        {
+            return _stack.AsEnumerable();
         }
 
         private readonly Stack<int> _stack = new Stack<int>();
