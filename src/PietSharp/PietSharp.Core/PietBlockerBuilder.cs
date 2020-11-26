@@ -10,8 +10,8 @@ namespace PietSharp.Core
         public PietBlockerBuilder(uint[,] data)
         {
             _data = data;
-            _width = _data.GetLength(0);
-            _height = _data.GetLength(1);
+            _width = _data.GetLength(1);
+            _height = _data.GetLength(0);
         }
 
         public PietBlock GetBlockAt(int x, int y)
