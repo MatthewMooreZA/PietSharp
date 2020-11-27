@@ -28,22 +28,22 @@ namespace PietSharp.Core.Models
 
         private void UpdateBoundaries(int x, int y)
         {
-            if (x < TopLeft.x && y < TopLeft.y)
+            if (x <= TopLeft.x && y <= TopLeft.y)
             {
                 TopLeft = (x, y);
             }
 
-            if (x > TopRight.x && y < TopRight.y)
+            if (x >= TopRight.x && y <= TopRight.y)
             {
                 TopRight = (x, y);
             }
 
-            if (x < BottomLeft.x && y > BottomLeft.y)
+            if (x <= BottomLeft.x && y >= BottomLeft.y)
             {
                 BottomLeft = (x, y);
             }
 
-            if (x > BottomRight.x && y > BottomRight.y)
+            if (x >= BottomRight.x && y >= BottomRight.y)
             {
                 BottomRight = (x, y);
             }

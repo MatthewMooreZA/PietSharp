@@ -33,7 +33,7 @@ namespace PietSharp.Core.Tests
         {
             var data = new uint[,]
             {
-                {0XFF, 0X00FF, 0x0000FF}
+                {0XFF0000, 0X00FF00, 0x0000FF}
             }; // R G B :)
 
             var blockBuilder = new PietBlockerBuilder(data);
@@ -81,6 +81,58 @@ namespace PietSharp.Core.Tests
             Assert.True(navigator.TryNavigate(initialBlock, out var result));
 
             Assert.Equal((2,1), result);
+        }
+
+        [Fact]
+        public void BasicWhiteNavigation()
+        {
+            var data = new uint[,]
+            {
+                {0XFF0000, 0XFFFFFF, 0X0000FF, 0X0000FF},
+                {0XFF0000, 0XFFFFFF, 0XFFFFFF, 0X0000FF}
+            };
+
+            var blockBuilder = new PietBlockerBuilder(data);
+
+            var initialBlock = blockBuilder.GetBlockAt(0, 0);
+
+            var navigator = new PietNavigator(data);
+
+            navigator.TryNavigate(initialBlock, out var result); // take first step into white
+
+            var whiteBlock = blockBuilder.GetBlockAt(result.x, result.y);
+
+            // based on the shape and the current CC
+            //  #
+            //  # #
+            // for any other colour we would end up on the bottom, however white must travel in a straight line
+            // so we should come out on top
+
+            Assert.True(navigator.TryNavigate(whiteBlock, out var whiteNavResult));
+
+            Assert.Equal((2, 0), whiteNavResult);
+        }
+
+        [Fact]
+        public void WhiteBlackEdge()
+        {
+            var data = new uint[,]
+            {
+                {0xFF0000, 0xFFFFFF, 0xFFFFFF, 0x000000},
+                {0x000000, 0x000000, 0xFFFFFF, 0x000000},
+            };
+
+            var blockBuilder = new PietBlockerBuilder(data);
+
+            var initialBlock = blockBuilder.GetBlockAt(0, 0);
+
+            var navigator = new PietNavigator(data);
+
+            navigator.TryNavigate(initialBlock, out var result); // take first step into white
+
+            var whiteBlock = blockBuilder.GetBlockAt(result.x, result.y);
+
+            Assert.False(navigator.TryNavigate(whiteBlock, out _));
         }
     }
 }

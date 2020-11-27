@@ -14,13 +14,16 @@ namespace PietSharp.Core
             _height = _data.GetLength(0);
         }
 
+        public (int x, int y) CurrentPoint { get; private set; } = (0, 0);
+
         public bool TryNavigate(PietBlock block, out (int x, int y) result)
         {
             int failureCount = 0;
             while (failureCount < 8)
             {
-                var exitPoint = (_direction, _codelChooser) switch
+                (int x, int y) exitPoint = (_direction, _codelChooser) switch
                 {
+                    _ when block.Colour == White => CurrentPoint,
                     (Direction.Right, CodelChoice.Left)  => block.TopRight.x >= block.BottomRight.x ? block.TopRight : block.BottomRight,
                     (Direction.Right, CodelChoice.Right) => block.BottomRight.x >= block.TopRight.x ? block.BottomRight : block.TopRight,
 
@@ -35,7 +38,45 @@ namespace PietSharp.Core
                     _ => throw new NotImplementedException(),
                 };
 
-                // todo: implement white - it has different step logic
+                if (block.Colour == White)
+                {
+                    bool StillInBlock()
+                    {
+                        return exitPoint.x >= 0 &&
+                               exitPoint.y >= 0 &&
+                               exitPoint.x < _width &&
+                               exitPoint.y < _height &&
+                               block.ContainsPixel(exitPoint.x, exitPoint.y);
+                    }
+
+
+                    (int x, int y) prevStep = exitPoint;
+                    while (StillInBlock())
+                    {
+                        prevStep = exitPoint;
+                        switch (_direction)
+                        {
+                            case Direction.Right:
+                                exitPoint.x++;
+                                break;
+                            case Direction.Down:
+                                exitPoint.y++;
+                                break;
+                            case Direction.Left:
+                                exitPoint.x--;
+                                break;
+                            case Direction.Up:
+                                exitPoint.y--;
+                                break;
+                            default:
+                                throw new NotImplementedException();
+                        }
+                    }
+
+                    // we've crossed the boundary, one step back to be on the edge
+                    exitPoint = prevStep;
+                }
+
                 (int x, int y) nextStep = _direction switch
                 {
                     Direction.Right => (exitPoint.x + 1, exitPoint.y),
@@ -50,14 +91,17 @@ namespace PietSharp.Core
                                      nextStep.x >= _width ||
                                      nextStep.y >= _height;
 
-                // you're blocked if the target is a block codel or you're out of bounds
-                bool isBlocked = isOutOfBounds || _data[exitPoint.y, exitPoint.x] == 0X000000;
+                // you're blocked if the target is a black codel or you're out of bounds
+                bool isBlocked = isOutOfBounds || _data[nextStep.y, nextStep.x] == Black;
 
                 if (!isBlocked)
                 {
+                    CurrentPoint = nextStep;
                     result = nextStep;
                     return true;
                 }
+
+                CurrentPoint = exitPoint;
 
                 if (failureCount % 2 == 0)
                 {
@@ -79,6 +123,9 @@ namespace PietSharp.Core
         private readonly uint[,] _data;
         private CodelChoice _codelChooser = CodelChoice.Left;
         private Direction _direction = Direction.Right;
+
+        private const uint White = 0xFFFFFF;
+        private const uint Black = 0x000000;
 
         private readonly int _width;
         private readonly int _height;
