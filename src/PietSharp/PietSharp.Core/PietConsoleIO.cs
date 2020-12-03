@@ -22,7 +22,7 @@ namespace PietSharp.Core
             return null;
         }
 
-        public char ReadChar()
+        public char? ReadChar()
         {
             return (char)Console.Read();
         }

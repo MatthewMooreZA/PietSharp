@@ -20,6 +20,6 @@ namespace PietSharp.Core.Contracts
         /// Reads the next char input.
         /// </summary>
         /// <returns>User input</returns>
-        public char ReadChar();
+        public char? ReadChar();
     }
 }

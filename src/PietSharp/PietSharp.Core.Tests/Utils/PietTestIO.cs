@@ -43,7 +43,7 @@ namespace PietSharp.Core.Tests.Utils
             return null;
         }
 
-        public char ReadChar()
+        public char? ReadChar()
         {
             throw new NotImplementedException();
         }

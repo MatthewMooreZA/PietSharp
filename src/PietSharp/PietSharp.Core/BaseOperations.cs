@@ -106,8 +106,11 @@ namespace PietSharp.Core
 
         public virtual void InChar()
         {
-            char val = _io.ReadChar();
-            _stack.Push(val);
+            var val = _io.ReadChar();
+            if (val.HasValue)
+            {
+                _stack.Push(val.Value);
+            }
         }
 
         public virtual void OutNumeric()
