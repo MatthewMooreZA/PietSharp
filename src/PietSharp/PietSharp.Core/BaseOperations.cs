@@ -11,14 +11,18 @@ namespace PietSharp.Core
         private PietStack _stack;
 
         private Func<PietBlock> _getExitedBlock;
+        private Action<int> _toggleDirectionPointer;
+        private Action<int> _toggleCodelChooser;
 
         private readonly IPietIO _io;
 
-        public BaseOperations(PietStack stack, IPietIO io, Func<PietBlock> getExitedBlock)
+        public BaseOperations(PietStack stack, IPietIO io, Func<PietBlock> getExitedBlock, Action<int> toggleDirectionPointer, Action<int> toggleCodelChooser)
         {
             _stack = stack;
             _io = io;
             _getExitedBlock = getExitedBlock;
+            _toggleDirectionPointer = toggleDirectionPointer;
+            _toggleCodelChooser = toggleCodelChooser;
         }
 
         /// <summary>
@@ -77,12 +81,20 @@ namespace PietSharp.Core
 
         public virtual void Pointer()
         {
-            throw new NotImplementedException();
+            var result = _stack.Pop();
+            if (result.HasValue)
+            {
+                _toggleDirectionPointer(result.Value);
+            }
         }
 
         public virtual void Switch()
         {
-            throw new NotImplementedException();
+            var result = _stack.Pop();
+            if (result.HasValue)
+            {
+                _toggleCodelChooser(result.Value);
+            }
         }
 
         public virtual void Duplicate()

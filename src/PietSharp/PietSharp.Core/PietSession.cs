@@ -19,7 +19,10 @@ namespace PietSharp.Core
 
             _currentBlock = _builder.GetBlockAt(0, 0);
 
-            var ops = new BaseOperations(_stack, io, () => _currentBlock);
+            var ops = new BaseOperations(_stack, io, 
+                () => _currentBlock, 
+                (i) => _navigator.RotateDirectionPointer(i),
+                (i) => _navigator.ToggleCodalChooser(i));
             _actionMap = ops.GetMap();
         }
 
@@ -53,6 +56,9 @@ namespace PietSharp.Core
                 Step();
             }
         }
+
+        public Direction DirectionPointer => _navigator.Direction;
+        public CodelChoice CodelChooser => _navigator.CodelChooser;
 
         private PietBlock _currentBlock;
         private PietBlock _lastBlock;

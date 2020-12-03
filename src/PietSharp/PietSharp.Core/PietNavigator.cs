@@ -21,7 +21,7 @@ namespace PietSharp.Core
             int failureCount = 0;
             while (failureCount < 8)
             {
-                (int x, int y) exitPoint = (_direction, _codelChooser) switch
+                (int x, int y) exitPoint = (Direction, CodelChooser) switch
                 {
                     _ when block.Colour == White => CurrentPoint,
                     (Direction.Right, CodelChoice.Left)  => block.TopRight.x >= block.BottomRight.x ? block.TopRight : block.BottomRight,
@@ -54,7 +54,7 @@ namespace PietSharp.Core
                     while (StillInBlock())
                     {
                         prevStep = exitPoint;
-                        switch (_direction)
+                        switch (Direction)
                         {
                             case Direction.Right:
                                 exitPoint.x++;
@@ -77,7 +77,7 @@ namespace PietSharp.Core
                     exitPoint = prevStep;
                 }
 
-                (int x, int y) nextStep = _direction switch
+                (int x, int y) nextStep = Direction switch
                 {
                     Direction.Right => (exitPoint.x + 1, exitPoint.y),
                     Direction.Down => (exitPoint.x, exitPoint.y + 1),
@@ -105,11 +105,11 @@ namespace PietSharp.Core
 
                 if (failureCount % 2 == 0)
                 {
-                    _codelChooser = _codelChooser == CodelChoice.Left ? CodelChoice.Right : CodelChoice.Left;
+                    ToggleCodalChooser(1);
                 }
                 else
                 {
-                    _direction = (Direction)((int)(_direction + 1) % 4);
+                    RotateDirectionPointer(1);
                 }
 
                 failureCount++;
@@ -119,10 +119,24 @@ namespace PietSharp.Core
             return false;
         }
 
+        /// <summary>
+        /// Rotates abs(turns) times. In turns is positive rotates clockwise otherwise counter clockwise
+        /// </summary>
+        /// <param name="turns">I</param>
+        public void RotateDirectionPointer(int turns)
+        {
+            Direction = (Direction)((int)(Direction + turns) % 4);
+        }
+
+        public void ToggleCodalChooser(int times)
+        {
+            CodelChooser = (CodelChoice)((int)(CodelChooser + Math.Abs(times)) % 2);
+        }
+
+        public Direction Direction { get; private set; } = Direction.Right;
+        public CodelChoice CodelChooser { get; private set; } = CodelChoice.Left;
 
         private readonly uint[,] _data;
-        private CodelChoice _codelChooser = CodelChoice.Left;
-        private Direction _direction = Direction.Right;
 
         private const uint White = 0xFFFFFF;
         private const uint Black = 0x000000;
