@@ -13,9 +13,14 @@ namespace PietSharp.Core
             _stack.Push(value);
         }
 
-        public void Pop()
+        public int? Pop()
         {
-            _stack.TryPop(out _ );
+            if (_stack.TryPop(out var result))
+            {
+                return result;
+            }
+
+            return null;
         }
 
         public void Add()
