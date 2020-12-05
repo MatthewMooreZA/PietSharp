@@ -37,7 +37,9 @@ namespace PietSharp.Core.Tests
 
                 if (File.Exists(outputFile))
                 {
-                    string expectedOutput = File.ReadAllText(outputFile);
+                    string expectedOutput = File.ReadAllText(outputFile)
+                        .Replace("\\n","\n");
+
 
                     yield return new object[] { imageFile, expectedOutput };
                 }
