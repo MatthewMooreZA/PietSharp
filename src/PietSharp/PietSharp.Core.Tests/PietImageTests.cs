@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PietSharp.Core.Tests.Utils;
 using Xunit;
 
@@ -9,11 +10,15 @@ namespace PietSharp.Core.Tests
     {
         [Theory]
         [MemberData(nameof(GetPietPrograms), ".\\Images")]
-        public void TestImage(string pietImage, string expectedOutput)
+        public void TestImage(string pietImage, string inputs, string expectedOutput)
         {
+            var input = string.IsNullOrWhiteSpace(inputs) 
+                ? new List<string>() 
+                : inputs.Split("\r\n").ToList();
+
             var imageReader = new PietImageReader();
             uint[,] pixels = imageReader.ReadImage(pietImage);
-            var io = new PietTestIO();
+            var io = new PietTestIO(input, maxOutput: 100);
             var session = new PietSession(pixels, io);
 
             session.Run();
@@ -25,17 +30,36 @@ namespace PietSharp.Core.Tests
         public static IEnumerable<object[]> GetPietPrograms(string directory)
         {
 
-            foreach (var outputFile in Directory.EnumerateFiles(directory, "*.out.txt"))
+            foreach (var testFile in Directory.EnumerateFiles(directory, "*.test.txt"))
             {
-                var imageFile = outputFile.Replace(".out.txt", "");
+                var imageFile = testFile.Replace(".test.txt", "");
 
-                if (File.Exists(outputFile))
+                if (File.Exists(testFile))
                 {
-                    string expectedOutput = File.ReadAllText(outputFile)
-                        .Replace("\\n","\n");
+                    string data = File.ReadAllText(testFile);
+                    foreach (var scenario in data.Split("\r\n"))
+                    {
+                        var splits = scenario.Split('|', 2);
+
+                        string expectedOutput;
+                        var inputs = string.Empty;
+                        if (splits.Length == 1)
+                        {
+                            // output only
+                            expectedOutput = splits[0];
+                        }
+                        else
+                        {
+                            inputs = splits[0];
+                            expectedOutput = splits[1];
+                        }
+
+                        expectedOutput = expectedOutput.Replace("\\n", "\n").Replace("\\r", "\r");
+
+                        yield return new object[] { imageFile, inputs, expectedOutput };
+                    }
 
 
-                    yield return new object[] { imageFile, expectedOutput };
                 }
             }
         }

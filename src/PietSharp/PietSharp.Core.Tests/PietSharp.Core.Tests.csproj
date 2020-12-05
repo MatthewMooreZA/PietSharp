@@ -8,47 +8,63 @@
 
   <ItemGroup>
     <None Remove="Images\Piet_alpha_filled.png" />
-    <None Remove="Images\Piet_alpha_filled.png.out.txt" />
+    <None Remove="Images\Piet_alpha_filled.png.test.txt" />
     <None Remove="Images\Piet_hello.png" />
-    <None Remove="Images\Piet_hello.png.out.txt" />
+    <None Remove="Images\Piet_hello.png.test.txt" />
     <None Remove="Images\Piet_hello_artistic.gif" />
-    <None Remove="Images\Piet_hello_artistic.gif.out.txt" />
+    <None Remove="Images\Piet_hello_artistic.gif.test.txt" />
     <None Remove="Images\Piet_hello_artistic2.gif" />
-    <None Remove="Images\Piet_hello_artistic2.gif.out.txt" />
+    <None Remove="Images\Piet_hello_artistic2.gif.test.txt" />
+    <None Remove="Images\Piet_nfib.gif" />
+    <None Remove="Images\Piet_nfib.gif.test.txt" />
+    <None Remove="Images\Piet_nprime.gif" />
+    <None Remove="Images\Piet_nprime.gif.test.txt" />
     <None Remove="Images\Piet_tetris.png" />
-    <None Remove="Images\Piet_tetris.png.out.txt" />
+    <None Remove="Images\Piet_tetris.png.test.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Images\Piet_alpha_filled.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Piet_alpha_filled.png.out.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Images\Piet_alpha_filled.png.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_hello.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Piet_hello.png.out.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Images\Piet_hello.png.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_hello_artistic.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Piet_hello_artistic.gif.out.txt">
+    <Content Include="Images\Piet_hello_artistic.gif.test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_hello_artistic2.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Piet_hello_artistic2.gif.out.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Images\Piet_hello_artistic2.gif.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_nfib.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_nfib.gif.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_nprime.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_nprime.gif.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_tetris.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Piet_tetris.png.out.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Images\Piet_tetris.png.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

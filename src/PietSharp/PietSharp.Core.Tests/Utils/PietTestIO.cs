@@ -19,6 +19,13 @@ namespace PietSharp.Core.Tests.Utils
             MaxOutput = maxOutput;
         }
 
+        public PietTestIO(List<string> inputs, int maxOutput)
+        {
+            MaxOutput = maxOutput;
+            OutputStream = new List<string>();
+            InputStream = inputs;
+        }
+
         public int MaxOutput { get; set; }
         public List<string> OutputStream { get; set; } 
         public List<string> InputStream { get; set; }
@@ -51,7 +58,7 @@ namespace PietSharp.Core.Tests.Utils
 
         public char? ReadChar()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public string OutputString()

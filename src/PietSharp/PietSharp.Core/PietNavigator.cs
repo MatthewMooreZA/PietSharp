@@ -24,6 +24,7 @@ namespace PietSharp.Core
         {
             if (StepCount > _maxSteps)
             {
+                // todo: aborting purely on step count seems crude - detect cycles rather
                 result = default;
                 // todo: log warning
                 return false;
