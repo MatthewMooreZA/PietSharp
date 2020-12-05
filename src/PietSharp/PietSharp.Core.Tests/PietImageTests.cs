@@ -38,7 +38,7 @@ namespace PietSharp.Core.Tests
                 if (File.Exists(testFile))
                 {
                     string data = File.ReadAllText(testFile);
-                    foreach (var scenario in data.Split("\r\n"))
+                    foreach (var scenario in data.Split(Environment.NewLine))
                     {
                         var splits = scenario.Split('|', 2);
 
