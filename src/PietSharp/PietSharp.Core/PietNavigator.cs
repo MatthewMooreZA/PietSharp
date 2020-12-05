@@ -24,17 +24,17 @@ namespace PietSharp.Core
                 (int x, int y) exitPoint = (Direction, CodelChooser) switch
                 {
                     _ when block.Colour == White => CurrentPoint,
-                    (Direction.Right, CodelChoice.Left)  => block.TopRight.x >= block.BottomRight.x ? block.TopRight : block.BottomRight,
-                    (Direction.Right, CodelChoice.Right) => block.BottomRight.x >= block.TopRight.x ? block.BottomRight : block.TopRight,
+                    (Direction.East, CodelChoice.Left)  => block.EastLeft,
+                    (Direction.East, CodelChoice.Right) => block.EastRight,
 
-                    (Direction.Down, CodelChoice.Left) => block.BottomRight.y >= block.BottomLeft.y ? block.BottomRight : block.BottomLeft,
-                    (Direction.Down, CodelChoice.Right) => block.BottomLeft.y >= block.BottomRight.y ? block.BottomLeft : block.BottomRight,
+                    (Direction.South, CodelChoice.Left) => block.SouthLeft,
+                    (Direction.South, CodelChoice.Right) => block.SouthRight,
 
-                    (Direction.Left, CodelChoice.Left) => block.BottomLeft.x <= block.TopLeft.x ? block.BottomLeft : block.TopLeft,
-                    (Direction.Left, CodelChoice.Right) => block.TopLeft.x <= block.BottomLeft.x ? block.TopLeft : block.BottomLeft,
+                    (Direction.West, CodelChoice.Left) => block.WestLeft,
+                    (Direction.West, CodelChoice.Right) => block.WestRight,
 
-                    (Direction.Up, CodelChoice.Left) => block.TopLeft.y <= block.TopRight.y ? block.TopLeft : block.TopRight,
-                    (Direction.Up, CodelChoice.Right) => block.TopRight.y <= block.TopLeft.y ? block.TopRight : block.TopLeft,
+                    (Direction.North, CodelChoice.Left) => block.NorthLeft,
+                    (Direction.North, CodelChoice.Right) => block.NorthRight,
                     _ => throw new NotImplementedException(),
                 };
 
@@ -56,16 +56,16 @@ namespace PietSharp.Core
                         prevStep = exitPoint;
                         switch (Direction)
                         {
-                            case Direction.Right:
+                            case Direction.East:
                                 exitPoint.x++;
                                 break;
-                            case Direction.Down:
+                            case Direction.South:
                                 exitPoint.y++;
                                 break;
-                            case Direction.Left:
+                            case Direction.West:
                                 exitPoint.x--;
                                 break;
-                            case Direction.Up:
+                            case Direction.North:
                                 exitPoint.y--;
                                 break;
                             default:
@@ -79,10 +79,10 @@ namespace PietSharp.Core
 
                 (int x, int y) nextStep = Direction switch
                 {
-                    Direction.Right => (exitPoint.x + 1, exitPoint.y),
-                    Direction.Down => (exitPoint.x, exitPoint.y + 1),
-                    Direction.Left => (exitPoint.x - 1, exitPoint.y),
-                    Direction.Up => (exitPoint.x, exitPoint.y - 1),
+                    Direction.East => (exitPoint.x + 1, exitPoint.y),
+                    Direction.South => (exitPoint.x, exitPoint.y + 1),
+                    Direction.West => (exitPoint.x - 1, exitPoint.y),
+                    Direction.North => (exitPoint.x, exitPoint.y - 1),
                     _ => throw new ArgumentOutOfRangeException()
                 };
 
@@ -133,7 +133,7 @@ namespace PietSharp.Core
             CodelChooser = (CodelChoice)((int)(CodelChooser + Math.Abs(times)) % 2);
         }
 
-        public Direction Direction { get; private set; } = Direction.Right;
+        public Direction Direction { get; private set; } = Direction.East;
         public CodelChoice CodelChooser { get; private set; } = CodelChoice.Left;
 
         private readonly uint[,] _data;

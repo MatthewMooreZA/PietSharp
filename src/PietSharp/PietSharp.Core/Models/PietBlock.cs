@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 
 namespace PietSharp.Core.Models
@@ -19,34 +20,10 @@ namespace PietSharp.Core.Models
         {
             if (_pixels.Add((x, y)))
             {
-                UpdateBoundaries(x, y);
                 return true;
             }
 
             return false;
-        }
-
-        private void UpdateBoundaries(int x, int y)
-        {
-            if (x <= TopLeft.x && y <= TopLeft.y)
-            {
-                TopLeft = (x, y);
-            }
-
-            if (x >= TopRight.x && y <= TopRight.y)
-            {
-                TopRight = (x, y);
-            }
-
-            if (x <= BottomLeft.x && y >= BottomLeft.y)
-            {
-                BottomLeft = (x, y);
-            }
-
-            if (x >= BottomRight.x && y >= BottomRight.y)
-            {
-                BottomRight = (x, y);
-            }
         }
 
         public bool ContainsPixel(int x, int y)
@@ -54,10 +31,69 @@ namespace PietSharp.Core.Models
             return _pixels.Contains((x, y));
         }
 
-        public (int x, int y) TopLeft { get; private set; } = (int.MaxValue, int.MaxValue);
-        public (int x, int y) TopRight { get; private set; } = (int.MinValue, int.MaxValue);
-        public (int x, int y) BottomLeft { get; private set; } = (int.MaxValue, int.MinValue);
-        public (int x, int y) BottomRight { get; private set; } = (int.MinValue, int.MinValue);
+        public (int x, int y) NorthLeft
+        {
+            get
+            {
+                return _pixels.OrderBy(p => p.y).ThenBy(p => p.x).First();
+            }
+        }
+
+        public (int x, int y) NorthRight
+        {
+            get
+            {
+                return _pixels.OrderBy(p => p.y).ThenByDescending(p => p.x).First();
+            }
+        }
+
+        public (int x, int y) EastLeft
+        {
+            get
+            {
+                return _pixels.OrderByDescending(p => p.x).ThenBy(p => p.y).First();
+            }
+        }
+
+        public (int x, int y) EastRight
+        {
+            get
+            {
+                return _pixels.OrderByDescending(p => p.x).ThenByDescending(p => p.y).First();
+            }
+        }
+
+        public (int x, int y) SouthLeft
+        {
+            get
+            {
+                return _pixels.OrderByDescending(p => p.y).ThenByDescending(p => p.x).First();
+            }
+        }
+
+        public (int x, int y) SouthRight
+        {
+            get
+            {
+                return _pixels.OrderByDescending(p => p.y).ThenBy(p => p.x).First();
+            }
+        }
+
+        public (int x, int y) WestLeft
+        {
+            get
+            {
+                return _pixels.OrderBy(p => p.x).ThenByDescending(p => p.y).First();
+            }
+        }
+
+        public (int x, int y) WestRight
+        {
+            get
+            {
+                return _pixels.OrderBy(p => p.x).ThenBy(p => p.y).First();
+            }
+        }
 
         private readonly HashSet<(int x, int y)> _pixels;
     }
