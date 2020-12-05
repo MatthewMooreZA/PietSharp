@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main ]
 
+
+defaults:
+  run:
+    working-directory: src
+
 jobs:
   build:
 
@@ -18,10 +23,7 @@ jobs:
         dotnet-version: 5.0.100
     - name: Install dependencies
       run: dotnet restore
-      working-directory: ./src
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: ./src
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory: ./src
