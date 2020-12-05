@@ -14,15 +14,21 @@ namespace PietSharp.Core.Tests.Utils
             InputStream = inputStream;
         }
 
-        public PietTestIO():this(new List<string>())
+        public PietTestIO(int maxOutput = 100):this(new List<string>())
         {
+            MaxOutput = maxOutput;
         }
 
+        public int MaxOutput { get; set; }
         public List<string> OutputStream { get; set; } 
         public List<string> InputStream { get; set; }
         public void Output(object value)
         {
             OutputStream.Add(value.ToString());
+            if (MaxOutput > 0 && OutputStream.Count > MaxOutput)
+            {
+                throw new Exception("Exceeded allowed output");
+            }
         }
 
         public int? ReadInt()
