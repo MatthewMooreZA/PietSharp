@@ -10,7 +10,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    working-directory: ./src
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -19,7 +18,10 @@ jobs:
         dotnet-version: 5.0.100
     - name: Install dependencies
       run: dotnet restore
+      working-directory: ./src
     - name: Build
       run: dotnet build --configuration Release --no-restore
+      working-directory: ./src
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+      working-directory: ./src
