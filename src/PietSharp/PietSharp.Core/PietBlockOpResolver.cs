@@ -52,7 +52,7 @@ namespace PietSharp.Core
                 };
             }
 
-            throw new NotImplementedException();
+            return PietOps.Noop;
         }
 
         private bool TryResolveColour(uint colour, out (HueColour colour, Darkness darkness) result)

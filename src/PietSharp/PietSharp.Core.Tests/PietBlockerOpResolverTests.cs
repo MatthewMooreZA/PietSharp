@@ -18,8 +18,8 @@ namespace PietSharp.Core.Tests
         {
             PietBlockOpResolver opsResolver = new PietBlockOpResolver();
 
-            var block1 = new PietBlock(colour1);
-            var block2 = new PietBlock(colour2);
+            var block1 = new PietBlock(colour1, true);
+            var block2 = new PietBlock(colour2, true);
 
             var operation = opsResolver.Resolve(block1, block2);
 

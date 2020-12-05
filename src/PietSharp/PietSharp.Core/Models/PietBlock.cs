@@ -8,14 +8,15 @@ namespace PietSharp.Core.Models
 {
     public class PietBlock
     {
-        public PietBlock(uint colour)
+        public PietBlock(uint colour, bool knownColour)
         {
             Colour = colour;
+            KnownColour = knownColour;
             _pixels = new HashSet<(int x, int y)>();
         }
         public int BlockCount => _pixels.Count;
         public uint Colour { get; }
-
+        public bool KnownColour { get; }
         public bool AddPixel(int x, int y)
         {
             if (_pixels.Add((x, y)))

@@ -7,23 +7,36 @@ namespace PietSharp.Core
 {
     public class PietNavigator
     {
-        public PietNavigator(uint[,] data)
+        public PietNavigator(uint[,] data, int maxSteps = 500000)
         {
             _data = data;
             _width = _data.GetLength(1);
             _height = _data.GetLength(0);
+            _maxSteps = maxSteps;
         }
+
+        private readonly int _maxSteps;
+        public int StepCount { get; private set; } = 0;
 
         public (int x, int y) CurrentPoint { get; private set; } = (0, 0);
 
         public bool TryNavigate(PietBlock block, out (int x, int y) result)
         {
+            if (StepCount > _maxSteps)
+            {
+                result = default;
+                // todo: log warning
+                return false;
+            }
             int failureCount = 0;
+
+            bool moveStraight = block.Colour == White || !block.KnownColour;
+
             while (failureCount < 8)
             {
                 (int x, int y) exitPoint = (Direction, CodelChooser) switch
                 {
-                    _ when block.Colour == White => CurrentPoint,
+                    _ when moveStraight => CurrentPoint,
                     (Direction.East, CodelChoice.Left)  => block.EastLeft,
                     (Direction.East, CodelChoice.Right) => block.EastRight,
 
@@ -38,7 +51,7 @@ namespace PietSharp.Core
                     _ => throw new NotImplementedException(),
                 };
 
-                if (block.Colour == White)
+                if (moveStraight)
                 {
                     bool StillInBlock()
                     {
@@ -98,6 +111,7 @@ namespace PietSharp.Core
                 {
                     CurrentPoint = nextStep;
                     result = nextStep;
+                    StepCount++;
                     return true;
                 }
 
@@ -105,7 +119,7 @@ namespace PietSharp.Core
 
                 if (failureCount % 2 == 0)
                 {
-                    ToggleCodalChooser(1);
+                    ToggleCodelChooser(1);
                 }
                 else
                 {
@@ -128,7 +142,7 @@ namespace PietSharp.Core
             Direction = (Direction)((int)(Direction + turns) % 4);
         }
 
-        public void ToggleCodalChooser(int times)
+        public void ToggleCodelChooser(int times)
         {
             CodelChooser = (CodelChoice)((int)(CodelChooser + Math.Abs(times)) % 2);
         }

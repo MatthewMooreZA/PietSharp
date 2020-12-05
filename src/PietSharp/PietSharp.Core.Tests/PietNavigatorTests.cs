@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PietSharp.Core.Models;
+﻿using PietSharp.Core.Models;
 using Xunit;
 
 namespace PietSharp.Core.Tests
@@ -14,10 +11,10 @@ namespace PietSharp.Core.Tests
             // super boring single block
             var data = new uint[,]
             {
-                {0XFF}
+                {0XFF0000}
             };
 
-            var block = new PietBlock(0XFF);
+            var block = new PietBlock(0XFF0000, true);
             block.AddPixel(0, 0);
 
             var navigator = new PietNavigator(data);

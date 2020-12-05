@@ -12,6 +12,38 @@ namespace PietSharp.Core
             _data = data;
             _width = _data.GetLength(1);
             _height = _data.GetLength(0);
+
+            _knownColours = new HashSet<uint>
+            {
+                // reds
+                0xFFC0C0,
+                0xFF0000,
+                0xC00000,
+                // yellows
+                0xFFFFC0,
+                0xFFFF00,
+                0x0C0C000,
+                // greens
+                0xC0FFC0,
+                0x00FF00,
+                0x00C000,
+                // cyans
+                0xC0FFFF,
+                0x00FFFF,
+                0x00C0C0,
+                // blues
+                0xC0C0FF,
+                0x0000FF,
+                0x0000C0,
+                // magentas
+                0xFFC0FF,
+                0xFF00FF,
+                0xC000C0,
+                // white
+                0xFFFFFF,
+                // black
+                0X000000
+            };
         }
 
         public PietBlock GetBlockAt(int x, int y)
@@ -23,7 +55,9 @@ namespace PietSharp.Core
         {
             uint targetColour = _data[y, x];
 
-            PietBlock block = new PietBlock(targetColour);
+            var knownColour = _knownColours.Contains(targetColour);
+
+            PietBlock block = new PietBlock(targetColour, knownColour);
 
             return BuildPietBlockRec(block, x, y, 0, 0);
         }
@@ -76,6 +110,10 @@ namespace PietSharp.Core
 
             return block;
         }
+
+        // we if want to support custom colours and operations going forward
+        // we'll need to allow extensions to add to this collection
+        private HashSet<uint> _knownColours;
 
         private readonly uint[,] _data;
         private readonly int _width;

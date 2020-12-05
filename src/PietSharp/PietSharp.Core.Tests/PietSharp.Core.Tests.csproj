@@ -7,12 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Piet_alpha_filled.png" />
+    <None Remove="Images\Piet_alpha_filled.png.out.txt" />
     <None Remove="Images\Piet_hello.png" />
     <None Remove="Images\Piet_hello.png.out.txt" />
     <None Remove="Images\Piet_hello_artistic.gif" />
     <None Remove="Images\Piet_hello_artistic.gif.out.txt" />
+    <None Remove="Images\Piet_hello_artistic2.gif" />
+    <None Remove="Images\Piet_hello_artistic2.gif.out.txt" />
+    <None Remove="Images\Piet_tetris.png" />
+    <None Remove="Images\Piet_tetris.png.out.txt" />
   </ItemGroup>
+
   <ItemGroup>
+    <Content Include="Images\Piet_alpha_filled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_alpha_filled.png.out.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Piet_hello.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -25,7 +38,20 @@
     <Content Include="Images\Piet_hello_artistic.gif.out.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Piet_hello_artistic2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_hello_artistic2.gif.out.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_tetris.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_tetris.png.out.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="xunit" Version="2.4.1" />

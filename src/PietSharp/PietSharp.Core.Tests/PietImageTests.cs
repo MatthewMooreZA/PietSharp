@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using PietSharp.Core.Tests.Utils;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Advanced;
-using SixLabors.ImageSharp.ColorSpaces;
-using SixLabors.ImageSharp.PixelFormats;
 using Xunit;
 
 namespace PietSharp.Core.Tests

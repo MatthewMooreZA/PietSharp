@@ -22,7 +22,7 @@ namespace PietSharp.Core
             var ops = new BaseOperations(_stack, io, 
                 () => _currentBlock, 
                 (i) => _navigator.RotateDirectionPointer(i),
-                (i) => _navigator.ToggleCodalChooser(i));
+                (i) => _navigator.ToggleCodelChooser(i));
             _actionMap = ops.GetMap();
         }
 
