@@ -11,6 +11,8 @@
     <None Remove="Images\Piet_alpha_filled.png.test.txt" />
     <None Remove="Images\Piet_hello.png" />
     <None Remove="Images\Piet_hello.png.test.txt" />
+    <None Remove="Images\Piet_helloworld-mondrian-big.png" />
+    <None Remove="Images\Piet_helloworld-mondrian-big.png.test.txt" />
     <None Remove="Images\Piet_hello_artistic.gif" />
     <None Remove="Images\Piet_hello_artistic.gif.test.txt" />
     <None Remove="Images\Piet_hello_artistic2.gif" />
@@ -19,6 +21,8 @@
     <None Remove="Images\Piet_nfib.gif.test.txt" />
     <None Remove="Images\Piet_nprime.gif" />
     <None Remove="Images\Piet_nprime.gif.test.txt" />
+    <None Remove="Images\Piet_power2_big.png" />
+    <None Remove="Images\Piet_power2_big.png.test.txt" />
     <None Remove="Images\Piet_tetris.png" />
     <None Remove="Images\Piet_tetris.png.test.txt" />
   </ItemGroup>
@@ -34,6 +38,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_hello.png.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_helloworld-mondrian-big.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_helloworld-mondrian-big.png.test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_hello_artistic.gif">
@@ -58,6 +68,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_nprime.gif.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_power2_big.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_power2_big.png.test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_tetris.png">
