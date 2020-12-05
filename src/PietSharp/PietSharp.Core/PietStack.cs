@@ -70,6 +70,7 @@ namespace PietSharp.Core
         {
             if (!_stack.TryPop(out var result)) return;
             this.Push(result);
+            this.Push(result);
         }
 
         private void ApplyTernary(Func<int, int, int> operatorFunc)
