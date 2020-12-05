@@ -101,6 +101,14 @@ namespace PietSharp.Core
             var (numberOfRolls, depthOfRoll) = stackResults;
             int absNumberOfRolls = Math.Abs(numberOfRolls);
 
+            if (Math.Sign(numberOfRolls) > 0)
+            {
+                _stack.RotateRight(depthOfRoll, absNumberOfRolls);
+            }
+            else
+            {
+                _stack.RotateLeft(depthOfRoll, absNumberOfRolls);
+            }
         }
 
         public IEnumerable<int> AsEnumerable()
