@@ -10,7 +10,7 @@ namespace PietSharp.Core.Tests
     public class PietImageTests
     {
         [Theory]
-        [MemberData(nameof(GetPietPrograms), ".\\Images")]
+        [MemberData(nameof(GetPietPrograms), "Images")]
         public void TestImage(string pietImage, string inputs, string expectedOutput)
         {
             var input = string.IsNullOrWhiteSpace(inputs) 
