@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using PietSharp.Core.Tests.Utils;
@@ -14,7 +15,7 @@ namespace PietSharp.Core.Tests
         {
             var input = string.IsNullOrWhiteSpace(inputs) 
                 ? new List<string>() 
-                : inputs.Split("\r\n").ToList();
+                : inputs.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
 
             var imageReader = new PietImageReader();
             uint[,] pixels = imageReader.ReadImage(pietImage);
@@ -46,12 +47,12 @@ namespace PietSharp.Core.Tests
                         if (splits.Length == 1)
                         {
                             // output only
-                            expectedOutput = splits[0];
+                            expectedOutput = splits[0].TrimStart();
                         }
                         else
                         {
                             inputs = splits[0];
-                            expectedOutput = splits[1];
+                            expectedOutput = splits[1].TrimStart();
                         }
 
                         expectedOutput = expectedOutput.Replace("\\n", "\n").Replace("\\r", "\r");
