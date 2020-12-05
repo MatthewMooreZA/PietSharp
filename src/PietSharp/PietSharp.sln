@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PietSharp.Core", "PietSharp.Core\PietSharp.Core.csproj", "{2801655A-414F-4737-B52E-FFC916D797CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PietSharp.Core", "PietSharp.Core\PietSharp.Core.csproj", "{2801655A-414F-4737-B52E-FFC916D797CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C7D1FFA-E1BE-4CFB-B055-CEEDB97B8B62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PietSharp.Core.Tests", "PietSharp.Core.Tests\PietSharp.Core.Tests.csproj", "{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PietSharp.Core.Tests", "PietSharp.Core.Tests\PietSharp.Core.Tests.csproj", "{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PietSharp.Blazor", "PietSharp.Blazor\PietSharp.Blazor.csproj", "{59A8945A-30AA-4601-BB51-3858A885BCFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A8945A-30AA-4601-BB51-3858A885BCFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A8945A-30AA-4601-BB51-3858A885BCFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A8945A-30AA-4601-BB51-3858A885BCFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A8945A-30AA-4601-BB51-3858A885BCFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
