@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.PixelFormats;
 
 namespace PietSharp.Core
@@ -45,17 +42,16 @@ namespace PietSharp.Core
             int count = 1;
             int minCount = int.MaxValue;
 
-            int[] rowsToTest = { 0, rgb.Height - 1 };
 
-            foreach (var rowIndex in rowsToTest)
+            for (var rowIndex = 0; rowIndex < rgb.Height; rowIndex++) 
             {
-                Span<Rgb24> firstRow = rgb.GetPixelRowSpan(rowIndex);
+                Span<Rgb24> row = rgb.GetPixelRowSpan(rowIndex);
 
-                var prevColour = ToRgb(firstRow[0]);
+                var prevColour = ToRgb(row[0]);
 
-                for (var i = 1; i < firstRow.Length; i++)
+                for (var i = 1; i < row.Length; i++)
                 {
-                    var currentColour = ToRgb(firstRow[i]);
+                    var currentColour = ToRgb(row[i]);
                     if (currentColour == prevColour)
                     {
                         count++;
