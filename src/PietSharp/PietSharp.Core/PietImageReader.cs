@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -9,17 +10,27 @@ namespace PietSharp.Core
         public uint[,] ReadImage(string path, int? codelSize = null)
         {
             using var image = Image.Load(path);
-            var rgb = image.CloneAs<Rgb24>();
+            return ReadImage(image);
+        }
 
+        public uint[,] ReadImage(Stream stream, int? codelSize = null)
+        {
+            using var image = Image.Load(stream);
+            return ReadImage(image);
+        }
+
+        private uint[,] ReadImage(Image image, int? codelSize = null)
+        {
+            var rgb = image.CloneAs<Rgb24>();
             var step = codelSize ?? EstimateCodelSize(rgb);
 
-            uint[,] pixels = new uint[image.Height / step, image.Width / step];
+            uint[,] pixels = new uint[rgb.Height / step, rgb.Width / step];
             int outY = 0;
-            for (var y = 0; y < image.Height; y += step, outY++)
+            for (var y = 0; y < rgb.Height; y += step, outY++)
             {
                 Span<Rgb24> pixelRowSpan = rgb.GetPixelRowSpan(y);
                 var outX = 0;
-                for (var x = 0; x < image.Width; x += step, outX++)
+                for (var x = 0; x < rgb.Width; x += step, outX++)
                 {
                     var pix = pixelRowSpan[x];
                     pixels[outY, outX] = ToRgb(pix);
