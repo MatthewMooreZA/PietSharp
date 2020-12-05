@@ -19,6 +19,12 @@ namespace PietSharp.Core
             return ReadImage(image);
         }
 
+        public uint[,] ReadImage(byte[] data, int? codelSize = null)
+        {
+            using var image = Image.Load(data);
+            return ReadImage(image);
+        }
+
         private uint[,] ReadImage(Image image, int? codelSize = null)
         {
             var rgb = image.CloneAs<Rgb24>();
