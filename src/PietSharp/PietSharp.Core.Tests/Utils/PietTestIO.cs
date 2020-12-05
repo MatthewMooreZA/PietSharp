@@ -53,5 +53,10 @@ namespace PietSharp.Core.Tests.Utils
         {
             throw new NotImplementedException();
         }
+
+        public string OutputString()
+        {
+            return string.Concat(OutputStream);
+        }
     }
 }
