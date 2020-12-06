@@ -29,3 +29,19 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+      
+      # Generate the website
+    - name: Publish
+      run: dotnet publish PietSharp.Blazor/PietSharp.Blazor.csproj --configuration Release
+
+    # Publish the website
+    - name: GitHub Pages action
+      if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.PUBLISH_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: bin/Release/net5.0/publish/wwwroot
+        allow_empty_commit: false
+        keep_files: false
+        force_orphan: true
