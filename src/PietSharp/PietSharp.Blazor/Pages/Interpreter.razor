@@ -1,7 +1,100 @@
 ﻿@page "/interpreter"
+@using PietSharp.Core
 
-<h3>Interpreter</h3>
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Welcome to the 'Piet-terpreter'.</h4>
+    <p>Load a file below and then invoke it by submitting an input.  If your app expects no input simply input blank.</p>
+</div>
+
+<div class="piet-app-loader border rounded-top">
+    <h6>Load Piet app</h6>
+    
+    <InputFile OnChange="@OnInputFileChange" />
+
+</div>
+
+<div>
+    <div class="output-text border rounded-bottom">
+        <pre>@_totalOutput</pre>
+    </div>
+    <div>
+        <input placeholder="Piet app input" class="input-text" @ref="txtPietInput" @bind="_currentInput" @onkeyup="OnInputKeyUp" />
+    </div>
+</div>
 
 @code {
 
+    private ElementReference txtPietInput;
+
+    private string _totalOutput = "";
+
+    private string _currentInput = "";
+
+    private PietBlazorIO _pietIO;
+    private uint[,] _pietPixels;
+
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        _totalOutput = "";
+
+        var buffer = new byte[e.File.Size];
+        await e.File.OpenReadStream().ReadAsync(buffer);
+
+        _pietPixels = _reader.ReadImage(buffer);
+        _pietIO = new PietBlazorIO(OnPietOutput);
+
+        await txtPietInput.FocusAsync();
+
+    }
+
+    private void OnInputKeyUp(KeyboardEventArgs args)
+    {
+        if (args.Code == "Enter")
+        {
+            Console.WriteLine(_currentInput);
+            _pietIO.SetInput(_currentInput);
+
+            _totalOutput += ">> " + _currentInput + Environment.NewLine;
+
+            _currentInput = string.Empty;
+
+            var pietSession = new PietSession(_pietPixels, _pietIO);
+
+            pietSession.Run();
+            _totalOutput += Environment.NewLine;
+        }
+
+    }
+
+    private void OnPietOutput(string output)
+    {
+        _totalOutput += output;
+        StateHasChanged();
+    }
+
+    readonly PietImageReader _reader = new PietImageReader();
 }
+
+
+<style>
+    .output-text {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-height: 50vh;
+        height: 50vh;
+        width: 100%;
+        margin: 4px 8px 4px 8px;
+    }
+
+    .input-text {
+        width: 100%;
+        margin: 4px 8px 4px 8px;
+    }
+
+    .piet-app-loader {
+        margin: 4px 8px 8px 8px;
+        padding: 4px;
+        width: 100%;
+    }
+</style>
