@@ -11,6 +11,8 @@
     <None Remove="Images\Piet_alpha_filled.png.test.txt" />
     <None Remove="Images\piet_factorial_big.png" />
     <None Remove="Images\piet_factorial_big.png.test.txt" />
+    <None Remove="Images\Piet_fizzbuzz.png" />
+    <None Remove="Images\Piet_fizzbuzz.png.test.txt" />
     <None Remove="Images\Piet_hello.png" />
     <None Remove="Images\Piet_hello.png.test.txt" />
     <None Remove="Images\Piet_helloworld-mondrian-big.png" />
@@ -40,6 +42,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\piet_factorial_big.png.test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_fizzbuzz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Piet_fizzbuzz.png.test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Piet_hello.png">
