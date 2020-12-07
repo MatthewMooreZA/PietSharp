@@ -17,8 +17,14 @@
     <div class="output-text border rounded-bottom">
         <pre>@_totalOutput</pre>
     </div>
-    <div>
-        <input placeholder="Piet app input" class="input-text" @ref="txtPietInput" @bind="_currentInput" @onkeyup="OnInputKeyUp" />
+    
+    <div class="input-group input-text">
+        <input type="text" class="form-control" placeholder="Piet app input" @ref="txtPietInput" @bind="_currentInput" @onkeyup="OnInputKeyUp" disabled="@(!_ready)">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" @onclick="RunPietApp" disabled="@(!_ready)">
+                <span class="oi oi-caret-right"></span>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -33,16 +39,20 @@
     private PietBlazorIO _pietIO;
     private uint[,] _pietPixels;
 
+    private bool _ready = false;
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
         _totalOutput = "";
-
+        _ready = false;
         var buffer = new byte[e.File.Size];
         await e.File.OpenReadStream().ReadAsync(buffer);
 
         _pietPixels = _reader.ReadImage(buffer);
         _pietIO = new PietBlazorIO(OnPietOutput);
+
+        // todo: add sanity checks to input file here
+        _ready = true;
 
         await txtPietInput.FocusAsync();
 
@@ -52,19 +62,24 @@
     {
         if (args.Code == "Enter")
         {
-            Console.WriteLine(_currentInput);
-            _pietIO.SetInput(_currentInput);
-
-            _totalOutput += ">> " + _currentInput + Environment.NewLine;
-
-            _currentInput = string.Empty;
-
-            var pietSession = new PietSession(_pietPixels, _pietIO);
-
-            pietSession.Run();
-            _totalOutput += Environment.NewLine;
+            RunPietApp();
         }
+    }
 
+    private void RunPietApp()
+    {
+        if (!_ready) return;
+
+        _pietIO.SetInput(_currentInput);
+
+        _totalOutput += ">> " + _currentInput + Environment.NewLine;
+
+        _currentInput = string.Empty;
+
+        var pietSession = new PietSession(_pietPixels, _pietIO);
+
+        pietSession.Run();
+        _totalOutput += Environment.NewLine;
     }
 
     private void OnPietOutput(string output)
@@ -88,7 +103,6 @@
     }
 
     .input-text {
-        width: 100%;
         margin: 4px 8px 4px 8px;
     }
 
