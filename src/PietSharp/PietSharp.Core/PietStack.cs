@@ -48,9 +48,10 @@ namespace PietSharp.Core
 
         public void Mod()
         {
+            // per the spec take the second value mod the first
             ApplyTernaryIf(
-                (s1, s2) => (s2 - s1)*(s2 / s1),
-                (_, s2) => s2 != 0
+                (s1, s2) => MathExt.Mod(s2, s1),
+                (s1, _) => s1 != 0
             );
         }
 
