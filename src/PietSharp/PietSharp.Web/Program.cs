@@ -19,7 +19,7 @@ namespace PietSharp.Web
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddGoogleAnalytics("256655275");
+            builder.Services.AddGoogleAnalytics("G-164PM8LWMY");
             await builder.Build().RunAsync();
         }
     }
