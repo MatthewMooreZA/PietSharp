@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C7D1FFA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PietSharp.Core.Tests", "PietSharp.Core.Tests\PietSharp.Core.Tests.csproj", "{AF0866E4-57DE-42ED-86C6-E58EC004BAC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PietSharp.Blazor", "PietSharp.Blazor\PietSharp.Blazor.csproj", "{E81A65B2-6DFA-41F2-ADAE-3F2A68532DAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PietSharp.Blazor", "PietSharp.Blazor\PietSharp.Blazor.csproj", "{E81A65B2-6DFA-41F2-ADAE-3F2A68532DAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
