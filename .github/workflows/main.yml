@@ -30,9 +30,15 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       
-      # Generate the website
+    # Generate the website
     - name: Publish
       run: dotnet publish PietSharp.Blazor/PietSharp.Blazor.csproj --configuration Release
+
+    - name: Rewrite base href
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: src/PietSharp/PietSharp.Blazor/bin/Release/net5.0/publish/wwwroot/index.html
+        base_href: /PietSharp/
 
     # Publish the website
     - name: GitHub Pages action
