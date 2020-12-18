@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PietSharp.Core.Contracts;
 
-namespace PietSharp.Blazor
+namespace PietSharp.Web
 {
     public class PietBlazorIO : IPietIO
     {

@@ -1,3 +1,4 @@
+using Blazor.Analytics;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PietSharp.Blazor
+namespace PietSharp.Web
 {
     public class Program
     {
@@ -18,7 +19,7 @@ namespace PietSharp.Blazor
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            builder.Services.AddGoogleAnalytics("256655275");
             await builder.Build().RunAsync();
         }
     }

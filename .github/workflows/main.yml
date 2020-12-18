@@ -32,12 +32,12 @@ jobs:
       
     # Generate the website
     - name: Publish
-      run: dotnet publish PietSharp.Blazor/PietSharp.Blazor.csproj --configuration Release
+      run: dotnet publish PietSharp.Web/PietSharp.Web.csproj --configuration Release
 
     - name: Rewrite base href
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: src/PietSharp/PietSharp.Blazor/bin/Release/net5.0/publish/wwwroot/index.html
+        html_path: src/PietSharp/PietSharp.Web/bin/Release/net5.0/publish/wwwroot/index.html
         base_href: /PietSharp/
 
     # Publish the website
@@ -47,7 +47,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN  }}
         publish_branch: gh-pages
-        publish_dir: src/PietSharp/PietSharp.Blazor/bin/Release/net5.0/publish/wwwroot
+        publish_dir: src/PietSharp/PietSharp.Web/bin/Release/net5.0/publish/wwwroot
         allow_empty_commit: false
         keep_files: false
         force_orphan: true
